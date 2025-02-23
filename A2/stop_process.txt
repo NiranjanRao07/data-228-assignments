@@ -1,0 +1,13 @@
+2025-02-22 22:58:11,098 INFO ipc.Server: Socket Reader #1 for port 9000: readAndProcess from client 127.0.0.1:52036 / 127.0.0.1:52036 threw exception [java.io.IOException: An existing connection was forcibly closed by the remote host]
+java.io.IOException: An existing connection was forcibly closed by the remote host
+        at sun.nio.ch.SocketDispatcher.read0(Native Method)
+        at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43)
+        at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+        at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+        at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:378)
+        at org.apache.hadoop.ipc.Server.channelRead(Server.java:3952)
+        at org.apache.hadoop.ipc.Server.access$2900(Server.java:150)
+        at org.apache.hadoop.ipc.Server$Connection.readAndProcess(Server.java:2490)
+        at org.apache.hadoop.ipc.Server$Listener.doRead(Server.java:1650)
+        at org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop(Server.java:1505)
+        at org.apache.hadoop.ipc.Server$Listener$Reader.run(Server.java:1476)
