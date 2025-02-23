@@ -1,0 +1,6 @@
+PS C:\Users\niran\OneDrive\Documents\DATA-228\A1\helloworld> java -jar target/helloworld-1.0-SNAPSHOT.jar
+Hello, Niranjan
+Today's date: 07-02-2025
+Random number: 3
+Squared result: 9
+PS C:\Users\niran\OneDrive\Documents\DATA-228\A1\helloworld>
