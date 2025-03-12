@@ -1,0 +1,12 @@
+The WordCount job is designed to process a large text file—in this case, the Declaration of Independence—to count the number of times each word appears. The code is structured into three main components:
+
+Job Setup (Driver Class):
+The main method in the Driver class creates a new Hadoop job, specifies which jar to use (ensuring all classes are available for execution), and gives the job a descriptive name ("word count"). It also sets the input and output paths, which tell Hadoop where to read the data from and where to write the results. Finally, it assigns the Mapper and Reducer classes, and defines the output types (Text for words and IntWritable for counts).
+
+Mapping Phase (Mapper Class):
+The Mapper (WordCountMapper) processes the input file line by line. For each line, it splits the text into individual words (typically using spaces as delimiters), removes any punctuation, and emits a key-value pair for every word it finds. The key is the word itself, and the value is simply 1—indicating one occurrence of that word.
+
+Reducing Phase (Reducer Class):
+Once the mapping is done, Hadoop automatically groups all the key-value pairs by word in what’s called the shuffle and sort phase. The Reducer (WordCountReducer) then receives each unique word along with a list of all the 1’s emitted for that word. It sums these values to determine the total count of each word. Finally, it outputs a single key-value pair per word with the word and its total count.
+
+When the job is run on the Declaration of Independence, Hadoop processes the entire text and counts every word. In your output, it turns out that the word "of" is the most frequent, occurring 78 times. This result is stored in the output file (commonly named part-r-00000), and it confirms that, in the context of this historical document, "of" appears more frequently than any other word.

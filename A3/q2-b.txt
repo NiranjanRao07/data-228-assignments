@@ -1,0 +1,25 @@
+  GNU nano 7.2                                 src/main/java/com/example/LongestWordReducer.java                                          package com.example;
+
+import java.io.IOException;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+public class LongestWordReducer
+    extends Reducer<Text, Text, Text, Text> {
+
+    @Override
+    protected void reduce(Text key, Iterable<Text> values, Context context)
+            throws IOException, InterruptedException {
+
+        String longestWord = "";
+
+        for (Text val : values) {
+            String current = val.toString();
+            if (current.length() > longestWord.length()) {
+                longestWord = current;
+            }
+        }
+
+        context.write(new Text("Longest Word"), new Text(longestWord));
+    }
+}

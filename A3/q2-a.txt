@@ -1,0 +1,31 @@
+GNU nano 7.2                                 src/main/java/com/example/LongestWordMapper.java                                           package com.example;
+
+import java.io.IOException;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+public class LongestWordMapper
+    extends Mapper<LongWritable, Text, Text, Text> {
+
+    private static final Text KEY_OUT = new Text("LongestWordCandidate");
+    private Text wordOut = new Text();
+
+    @Override
+    protected void map(LongWritable key, Text value, Context context)
+            throws IOException, InterruptedException {
+
+        // Split line by whitespace
+        String[] tokens = value.toString().split("\\s+");
+        for (String token : tokens) {
+            // Remove punctuation if desired
+            token = token.replaceAll("[^a-zA-Z]", "");
+
+            if (!token.isEmpty()) {
+                wordOut.set(token);
+                // Emit each word under the same key
+                context.write(KEY_OUT, wordOut);
+            }
+        }
+    }
+}
